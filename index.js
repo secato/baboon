@@ -1,5 +1,11 @@
 const app = require('express')()
+const mongoose = require('mongoose')
+const keys = require('./config/keys')
+require('./models/User')
 require('./services/passport')
+
+console.log('Trying to connec to database')
+mongoose.connect(keys.mongoURI, { useNewUrlParser: true })
 
 // applying routes
 require('./routes/authRoutes')(app)
