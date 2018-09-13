@@ -4,6 +4,16 @@ const keys = require('../config/keys')
 const mongoose = require('mongoose')
 const User = mongoose.model('users')
 
+passport.serializeUser((user, done) => {
+    done(null, user.id)
+})
+
+passport.deserializeUser((id, done) => {
+    User.findById(id)
+        .then(user => {
+            done(null, user)
+        })
+})
 
 // google oauth setup
 passport.use(new GoogleStrategy({
@@ -16,17 +26,13 @@ passport.use(new GoogleStrategy({
         .then(user => {
             if (user) {
                 // user already exists
+                done(null, user)
             } else {
-                new User({ googleId: profile.id }).save()
+                new User({ googleId: profile.id })
+                    .save()
+                    .then(user => done(null, user))
             }
         })
 
-    // access token allows us to read, add, delete and other things. But it is not used here
-    console.log('access token', accessToken)
 
-    // access token expire in a TimeRanges, we can use refresh token to get a new
-    console.log('refresh token', refreshToken)
-
-    // profile information
-    console.log('profile: ', profile)
 }))
