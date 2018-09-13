@@ -8,7 +8,8 @@
 tsconfig.json
 jsconfig.json
 
-keys.js
+# dev environment keys
+dev.js
 
 ### Linux ###
 *~
