@@ -8,18 +8,12 @@ class Header extends Component {
       case null:
         break
       case false:
-        return <ul className='right'><li><a href='/auth/google'>Login With Google</a></li></ul>
+        return <li><a href='/auth/google'>Login With Google</a></li>
       default:
-        return (
-          <ul className='right'>
-            <li>
-              <Link to='/billing'>Add credit</Link>
-            </li>
-            <li>
-              <a href='/api/logout'>Logout</a>
-            </li>
-          </ul>
-        )
+        return [
+          <li key='billingkey'><Link to='/billing'>Add credit</Link></li>,
+          <li key='logoutkey'><a href='/api/logout'>Logout</a></li>
+        ]
     }
   }
 
@@ -28,14 +22,12 @@ class Header extends Component {
       <nav>
         <div className='nav-wrapper blue darken-3'>
           <div className='container'>
-            <Link
-              to={this.props.auth ? '/surveys' : '/'}
-              className='brand-logo'>
-                            Emaily
+            <Link to={this.props.auth ? '/surveys' : '/'} className='brand-logo'>
+             Emaily
             </Link>
-            {/* <ul id="nav-mobile" className="right"> */}
-            {this.renderContent()}
-            {/* </ul> */}
+            <ul id='nav-mobile' className='right'>
+              {this.renderContent()}
+            </ul>
           </div>
         </div>
       </nav>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { CardElement, injectStripe } from 'react-stripe-elements'
-import './checkoutStyle.css'
+import { CardNumberElement, CardExpiryElement, CardCVCElement, injectStripe } from 'react-stripe-elements'
+import { connect } from 'react-redux'
+import * as actions from '../../actions'
 
 class CheckoutForm extends Component {
   constructor (props) {
@@ -9,32 +10,45 @@ class CheckoutForm extends Component {
     this.submit = this.submit.bind(this)
   }
 
-  async submit (ev) {
-    let { token } = await this.props.stripe.createToken({ name: 'Name' })
-    // let response = await fetch('/charge', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'text/plain' },
-    //   body: token.id
-    // })
+  async submit () {
+    try {
+      let { token, error } = await this.props.stripe.createToken({ name: 'Name' })
+      if (error) throw error
 
-    // if (response.ok) this.setState({ complete: true })
+      this.props.handleToken(token) // coming from action creator
+      this.setState({ complete: true })
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   render () {
     if (this.state.complete) return <h1>Purchase Complete</h1>
-
     return (
-      <div className='example example4'>
-        <form className='form' action=''>
-          <fieldset>
-            <p>Would you like to complete the purchase?</p>
-            <CardElement />
-            <button onClick={this.submit}>Submit</button>
-          </fieldset>
+      <div className='row'>
+        <form className='col s12'>
+          <div className='row'>
+            <div className='input-field col s12'>
+              <label htmlFor='first_name'>Card number</label>
+              <CardNumberElement />
+              {/* <input placeholder='Placeholder' id='first_name' type='text' className='validate' /> */}
+            </div>
+          </div>
+          <div className='row'>
+            <div className='input-field col s6'>
+              <CardExpiryElement />
+              <label>Expiration Date</label>
+            </div>
+            <div className='input-field col s6'>
+              <CardCVCElement />
+              <label>CVC</label>
+            </div>
+          </div>
         </form>
+        <button className='btn waves-effect waves-light' onClick={this.submit}>Send</button>
       </div>
     )
   }
 }
 
-export default injectStripe(CheckoutForm)
+export default connect(null, actions)(injectStripe(CheckoutForm))
