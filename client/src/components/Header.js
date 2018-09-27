@@ -11,8 +11,9 @@ class Header extends Component {
         return <li><a href='/auth/google'>Login With Google</a></li>
       default:
         return [
-          <li key='billingkey'><Link to='/billing'>Add credit</Link></li>,
-          <li key='logoutkey'><a href='/api/logout'>Logout</a></li>
+          <li key='1'><Link to='/billing'>Add credit</Link></li>,
+          <li key='2' style={{ margin: '0 10px' }}>Credits: {this.props.auth.credits}</li>,
+          <li key='3'><a href='/api/logout'>Logout</a></li>
         ]
     }
   }
@@ -23,7 +24,7 @@ class Header extends Component {
         <div className='nav-wrapper blue darken-3'>
           <div className='container'>
             <Link to={this.props.auth ? '/surveys' : '/'} className='brand-logo'>
-             Emaily
+              Emaily
             </Link>
             <ul id='nav-mobile' className='right'>
               {this.renderContent()}

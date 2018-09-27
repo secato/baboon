@@ -14,8 +14,7 @@ class CheckoutForm extends Component {
     try {
       let { token, error } = await this.props.stripe.createToken({ name: 'Name' })
       if (error) throw error
-      console.log(token)
-      this.props.handleToken(token) // coming from action creator
+      await this.props.handleToken(token) // coming from action creator
       this.setState({ complete: true })
     } catch (error) {
       console.log(error)
