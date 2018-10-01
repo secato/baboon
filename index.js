@@ -7,6 +7,7 @@ const keys = require('./config/keys')
 
 // loading models
 require('./models/User')
+require('./models/Survey')
 
 // loading services
 require('./services/passport')
@@ -28,6 +29,7 @@ app.use(passport.session())
 // applying routes
 require('./routes/authRoutes')(app)
 require('./routes/billingRoutes')(app)
+require('./routes/surveyRoutes')(app)
 
 if (process.env.NODE_ENV === 'production') {
   // serve up production assets like main.js and main.css
