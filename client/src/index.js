@@ -10,6 +10,10 @@ import reducers from './reducers'
 import 'materialize-css/dist/css/materialize.min.css'
 import 'materialize-css/dist/js/materialize.min.js'
 
+// Development only helper
+import axios from 'axios'
+window.axios = axios
+
 // first param: reducers | second param: innitial state | third param: middlewares
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk))
 
