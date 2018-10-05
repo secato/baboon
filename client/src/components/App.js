@@ -6,9 +6,9 @@ import * as actions from '../actions'
 import Header from './Header'
 import Landing from './Landing'
 import Checkout from './Checkout/Checkout'
+import NewSurveyButton from './NewSurveyButton'
+import SurveyNew from './Survey/SurveyNew'
 const Dashboard = () => <h2>Dashboard</h2>
-const SurveyNew = () => <h2>SurveyNew</h2>
-// const Landing = () => <h2>Landing</h2>
 
 class App extends Component {
   componentDidMount () {
@@ -26,6 +26,7 @@ class App extends Component {
             <Route exact path='/billing' component={Checkout} />
             <Route path='/surveys/new' component={SurveyNew} />
           </div>
+          <NewSurveyButton />
         </div>
       </BrowserRouter>
     )
