@@ -26,12 +26,14 @@ module.exports = app => {
           _id: '$_id',
           title: '$title',
           subject: '$subject',
-          body: '$body'
+          body: '$body',
+          dateSent: '$dateSent'
         },
         total: { $sum: 1 },
         yesCount: { $sum: { $cond: ['$recipients.yes', 1, 0] } },
         noCount: { $sum: { $cond: ['$recipients.no', 1, 0] } }
-      } }
+      } },
+      { $sort: { '_id.dateSent': -1 } }
     ])
     res.send(surveys)
   })

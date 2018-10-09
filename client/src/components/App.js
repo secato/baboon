@@ -8,7 +8,7 @@ import Landing from './Landing'
 import Checkout from './Checkout/Checkout'
 import NewSurveyButton from './NewSurveyButton'
 import SurveyNew from './Survey/SurveyNew'
-const Dashboard = () => <h2>Dashboard</h2>
+import Dashboard from './Dashboard'
 
 class App extends Component {
   componentDidMount () {
