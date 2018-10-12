@@ -9,6 +9,7 @@ import reducers from './reducers'
 
 import 'materialize-css/dist/css/materialize.min.css'
 import 'materialize-css/dist/js/materialize.min.js'
+import './style.css'
 
 // Development only helper
 import axios from 'axios'
@@ -24,5 +25,5 @@ ReactDOM.render(
   document.getElementById('root')
 )
 
-console.log('STRIPE KEY IS', process.env.REACT_APP_STRIPE_PK)
-console.log('ENV is', process.env.NODE_ENV)
+// console.log('STRIPE KEY IS', process.env.REACT_APP_STRIPE_PK)
+// console.log('ENV is', process.env.NODE_ENV)
