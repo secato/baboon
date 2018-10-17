@@ -4,24 +4,19 @@ import M from 'materialize-css'
 
 class NewSurveyButton extends Component {
   componentDidMount () {
-    document.addEventListener('DOMContentLoaded', function () {
-      var elems = document.querySelectorAll('.tap-target')
-      M.TapTarget.init(elems)
-    })
+    M.Tooltip.init(document.querySelectorAll('.tooltipped'))
+    M.FloatingActionButton.init(document.querySelectorAll('.fixed-action-btn'))
   }
   render () {
     return (
       <React.Fragment>
         <div className='fixed-action-btn'>
-          <Link to='/surveys/new' id='newSurvey' className='waves-effect waves-light btn btn-large btn-floating red accent-2'>
+          <Link to='/surveys/new' id='newSurvey'
+            className='tooltipped btn-floating btn-large waves-effect red accent-2'
+            data-position='top'
+            data-tooltip='Create new survey'>
             <i className='material-icons'>add</i>
           </Link>
-        </div>
-        <div className='tap-target' data-target='newSurvey'>
-          <div className='tap-target-content'>
-            <h5>Title</h5>
-            <p>A bunch of text</p>
-          </div>
         </div>
       </React.Fragment>
     )

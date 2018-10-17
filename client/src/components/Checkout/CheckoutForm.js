@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { CardNumberElement, CardExpiryElement, CardCVCElement, injectStripe } from 'react-stripe-elements'
+import { CardNumberElement, CardExpiryElement, CardCVCElement, injectStripe, CardElement } from 'react-stripe-elements'
 import { connect } from 'react-redux'
 import * as actions from '../../actions'
 
@@ -28,19 +28,24 @@ class CheckoutForm extends Component {
         <form className='col s12'>
           <div className='row'>
             <div className='input-field col s12'>
-              <label htmlFor='first_name'>Card number</label>
-              <CardNumberElement />
-              {/* <input placeholder='Placeholder' id='first_name' type='text' className='validate' /> */}
+              <label htmlFor=''>
+              Card number
+                <CardNumberElement />
+              </label>
             </div>
           </div>
           <div className='row'>
             <div className='input-field col s6'>
-              <CardExpiryElement />
-              <label>Expiration Date</label>
+              <label>
+                Expiration Date
+                <CardExpiryElement />
+              </label>
             </div>
             <div className='input-field col s6'>
-              <CardCVCElement />
-              <label>CVC</label>
+              <label htmlFor=''>
+              Card Details
+                <CardCVCElement />
+              </label>
             </div>
           </div>
         </form>

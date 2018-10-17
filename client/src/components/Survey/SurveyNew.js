@@ -5,6 +5,14 @@ import SurveyForm from './SurveyForm'
 import SurveyFormReview from './SurveyFormReview'
 
 class SurveyNew extends Component {
+  componentDidMount () {
+    this.props.updateBreadCrumb([
+      { path: '/', name: 'Home' },
+      { path: '/surveys', name: 'Surveys' },
+      { path: '/surveys/new', name: 'New' }
+    ])
+  }
+
   state = { showFormReview: false }
 
   renderContent() {
@@ -16,7 +24,9 @@ class SurveyNew extends Component {
 
   render () {
     return (
-      <div>
+      <div className='row'>
+        <h5>Survey form</h5>
+        <blockquote>Fill the form to send an awesome survey email</blockquote>
         {this.renderContent()}
       </div>
     )

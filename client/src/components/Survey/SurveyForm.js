@@ -4,26 +4,32 @@ import { reduxForm, Field } from 'redux-form'
 import SurveyField from './SurveyField'
 import validateEmails from '../../utils/validateEmails'
 import formFields from './formFields'
+import M from 'materialize-css'
 
 class SurveyForm extends Component {
+  componentDidMount () {
+    M.updateTextFields()
+  }
   renderFields () {
-    return formFields.map(({ label, name }) => (
+    return formFields.map(({ label, name, help }) => (
       <Field
         key={name}
         type='text'
         component={SurveyField}
         label={label}
-        name={name} />
+        name={name}
+        help={help} />
     ))
   }
 
   render () {
     return (
-      <div className='container'>
-        <form onSubmit={this.props.handleSubmit(this.props.onSurveySubmit)}>
+      <div className='row valign-wrapper'>
+        <form onSubmit={this.props.handleSubmit(this.props.onSurveySubmit)} className='col s12'>
           <Fragment>
             {this.renderFields()}
           </Fragment>
+          <br />
           <Link to='/surveys' className='red btn-flat lighten-2 waves-effect white-text left'>
             <i className='material-icons right'>clear</i>Cancel
           </Link>

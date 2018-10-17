@@ -6,8 +6,7 @@ import M from 'materialize-css'
 class Header extends Component {
   componentDidMount () {
     document.addEventListener('DOMContentLoaded', function () {
-      var elems = document.querySelectorAll('.sidenav')
-      M.Sidenav.init(elems)
+      M.Sidenav.init(document.querySelectorAll('.sidenav'))
     })
   }
   renderContent () {
@@ -27,19 +26,40 @@ class Header extends Component {
     }
   }
 
+  renderBreadCrumbs () {
+    return this.props.breadCrumbs.map((breadCrumb, index) => {
+      return (
+        <Link key={index} to={breadCrumb.path} className='breadcrumb'>{breadCrumb.name}</Link>
+      )
+    })
+  }
+
   render () {
     return (
-      <nav className='blue-grey darken-4'>
-        <div className='nav-wrapper container'><Link id='logo-container' to={this.props.auth ? '/surveys' : '/'} className='brand-logo'>Logo</Link>
-          <a data-target='nav-mobile' className='sidenav-trigger'><i className='material-icons'>menu</i></a>
-          <ul className='right hide-on-med-and-down'>
+      <div className='row'>
+        <nav className='blue-grey darken-4'>
+          <div className='nav-wrapper container'><Link id='logo-container' to={this.props.auth ? '/surveys' : '/'} className='brand-logo'>Logo</Link>
+            <a data-target='nav-mobile' className='sidenav-trigger'><i className='material-icons'>menu</i></a>
+            <ul className='right hide-on-med-and-down'>
+              {this.renderContent()}
+            </ul>
+          </div>
+          <ul id='nav-mobile' className='sidenav'>
             {this.renderContent()}
           </ul>
-        </div>
-        <ul id='nav-mobile' className='sidenav'>
-          {this.renderContent()}
-        </ul>
-      </nav>
+          {this.props.auth
+            ? <div className='nav-wrapper blue-grey darken-1'>
+              <div className='container'>
+                <div className='col s12'>
+                  {this.renderBreadCrumbs()}
+                </div>
+              </div>
+            </div>
+            : ''
+          }
+        </nav>
+
+      </div>
     )
   }
 }
