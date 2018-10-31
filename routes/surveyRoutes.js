@@ -7,11 +7,13 @@ const { URL } = require('url')
 const Path = require('path-parser').default
 const _ = require('lodash')
 
+const path = require('path')
+
 const Survey = mongoose.model('surveys')
 
 module.exports = app => {
   app.get('/api/surveys/:surveyId/:choice', (req, res) => {
-    res.send('Thanks for Voting!')
+    res.sendFile(path.join(__dirname, '..', 'services', 'thankyou.html'))
   })
 
   app.get('/api/surveys', requireLogin, async (req, res) => {
