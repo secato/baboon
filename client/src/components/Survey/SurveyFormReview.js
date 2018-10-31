@@ -18,6 +18,7 @@ const SurveyFormReview = ({ onCancel, formValues, submitSurvey, history }) => {
     <div>
       <h5>Please confirm your entries</h5>
       {reviewFields}
+      <br/>
       <button
         className='blue btn-flat waves-effect white-text left'
         name='action'
