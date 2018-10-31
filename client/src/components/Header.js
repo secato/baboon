@@ -20,8 +20,9 @@ class Header extends Component {
 
         return [
           <li key='1' style={{ margin: '0 10px' }}>Credits: {this.props.auth.credits}</li>,
-          <li key='2'><Link to='/billing' className='waves-effect waves-light'><i className='material-icons left'>attach_money</i>Add credit</Link></li>,
-          <li key='3'><a href='/api/logout' className='waves-effect waves-light'><i className='material-icons right'>exit_to_app</i>Logout</a></li>
+          <li key='2'><Link to='/surveys' className='waves-effect waves-light'><i className='material-icons left'>question_answer</i>Surveys</Link></li>,
+          <li key='3'><Link to='/billing' className='waves-effect waves-light'><i className='material-icons left'>attach_money</i>Add credit</Link></li>,
+          <li key='4'><a href='/api/logout' className='waves-effect waves-light'><i className='material-icons right'>exit_to_app</i>Logout</a></li>
         ]
     }
   }
@@ -36,9 +37,9 @@ class Header extends Component {
 
   render () {
     return (
-      <div className='row'>
+      <header className='row'>
         <nav className='blue-grey darken-4'>
-          <div className='nav-wrapper container'><Link id='logo-container' to={this.props.auth ? '/surveys' : '/'} className='brand-logo'>Logo</Link>
+          <div className='nav-wrapper container'><Link id='logo-container' to={this.props.auth ? '/surveys' : '/'} className='brand-logo'>Baboon</Link>
             <a data-target='nav-mobile' className='sidenav-trigger'><i className='material-icons'>menu</i></a>
             <ul className='right hide-on-med-and-down'>
               {this.renderContent()}
@@ -59,7 +60,7 @@ class Header extends Component {
           }
         </nav>
 
-      </div>
+      </header>
     )
   }
 }

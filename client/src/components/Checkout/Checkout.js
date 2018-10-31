@@ -12,7 +12,7 @@ class Checkout extends Component {
   render () {
     return (
       <div className='row'>
-        <h5>CheckoutForm</h5>
+        <h5>Checkout Form</h5>
         <blockquote>Charge $5 for 5 credits - 1 credit equals one survey</blockquote>
         <StripeProvider apiKey={process.env.REACT_APP_STRIPE_PK}>
           <Elements>

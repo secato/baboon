@@ -13,7 +13,7 @@ class Landing extends Component {
       <React.Fragment>
         <div className='section no-pad-bot' id='index-banner'>
           <div className='container'>
-            <h1 className='header center blue-grey-text text-darken-3'>EMAILY</h1>
+            <h1 className='header center blue-grey-text text-darken-3'>BABOON</h1>
             <div className='row center'>
               <h5 className='header col s12 light'>A modern survey automation tool</h5>
             </div>
@@ -39,7 +39,7 @@ class Landing extends Component {
               <div className='icon-block'>
                 <h2 className='center amber-text text-darken-2'><i className='material-icons'>question_answer</i></h2>
                 <h5 className='center'>Collect Feedback</h5>
-                <p className='light'>Collect a awesome feedback for yes/no questions.</p>
+                <p className='light'>Collect a awesome feedback for complex yes/no questions.</p>
               </div>
             </div>
 

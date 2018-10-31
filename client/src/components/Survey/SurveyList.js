@@ -4,39 +4,46 @@ import { fetchSurveys } from '../../actions'
 import M from 'materialize-css'
 
 class SurveyList extends Component {
-  componentDidMount () {
+  componentDidMount() {
     this.props.fetchSurveys().then(() => {
       var elems = document.querySelectorAll('.collapsible')
       M.Collapsible.init(elems, {})
     })
   }
 
-  componentDidUpdate (prevProps) {
+  componentDidUpdate(prevProps) {
     if (prevProps.surveys.length !== this.props.surveys.length) {
       M.toast({ html: 'Survey list loaded' })
     }
   }
 
-  renderSurveys () {
+  renderSurveys() {
     return this.props.surveys.map(survey => {
       return (
-        <li key={survey._id._id}>
-          <div className='collapsible-header'><i className='material-icons'>filter_drama</i>{survey._id.title}</div>
+        <li key={survey._id._id} className="active">
+          <div className='collapsible-header hvr-grow'><i className='material-icons'>question_answer</i>{survey._id.title}</div>
           <div className='collapsible-body'>
-            <span>{survey._id.body}</span>
-            <div className='card blue-grey darken-1' key={survey._id._id}>
+            <div className='card blue accent-2' key={survey._id._id}>
               <div className='card-content white-text'>
-                <span className='card-title'>{survey._id.title}</span>
-                <p>
-                  {survey._id.body}
-                </p>
                 <p className='right'>
-              Sent On: {new Date(survey._id.dateSent).toLocaleDateString()}
+                  Sent On: {new Date(survey._id.dateSent).toLocaleDateString()}
                 </p>
+                <span className='card-title'>{survey._id.title}</span>
+                <hr className='rules'/>
+                {survey._id.body}
               </div>
-              <div className='card-action'>
-                <a>Yes: {survey.yesCount}</a>
-                <a>No: {survey.noCount}</a>
+              <div className='card-action blue darken-2'>
+                <a className='btn-flat white-text'>
+                  <i className='material-icons left'>thumb_up</i>{survey.yesCount}
+                </a>
+                <a className='btn-flat white-text'>
+                  <i className='material-icons left'>thumb_down</i>{survey.noCount}
+                </a>
+
+                <a className='btn-flat white-text right'>
+                  Total: {survey.yesCount + survey.noCount}
+                </a>
+
               </div>
             </div>
           </div>
@@ -44,7 +51,7 @@ class SurveyList extends Component {
       )
     })
   }
-  render () {
+  render() {
     if (!this.props.surveys) {
       return (
         <div className='container'>
@@ -65,7 +72,7 @@ class SurveyList extends Component {
   }
 }
 
-function mapStateToProps ({ surveys }) {
+function mapStateToProps({ surveys }) {
   return { surveys }
 }
 
