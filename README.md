@@ -17,11 +17,20 @@ The other folders are related to the backend API.
 ## Getting started
 Clone, then install both API and client dependencies after that run de dev script from root folder (it starts both client and server with concurrently):
 ```
+# install api dependencies
 cd baboon
 npm i
+
+# install client dependencies
 cd client
 npm i
-cd ..
+
+# copy the prod.js config file to dev.js
+# and fill with the keys values
+cd config
+cp prod.js dev.js
+
+# start the app
 npm run dev
 ```
 
